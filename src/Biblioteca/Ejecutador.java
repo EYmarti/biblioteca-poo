@@ -2,9 +2,7 @@ package Biblioteca;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
-import java.util.concurrent.ConcurrentLinkedDeque;
 
 public class Ejecutador {
     public static void main(String[] args) {
@@ -21,6 +19,7 @@ public class Ejecutador {
                     5.salir (opcion 2)
                     """);
             int opcion = entrada.nextInt();
+            entrada.nextLine();
 
             switch (opcion) {
                 case 1: {
@@ -37,11 +36,13 @@ public class Ejecutador {
 
                         System.out.println("¿quiere registrar mas clientes?");
                         char respuesta = entrada.next().toLowerCase().charAt(0);
+                        entrada.nextLine(); // Limpia el buffer primero
                         if (respuesta != 's') {
                             break;
                         }
                     }
                     administrador.registrarCliente(clientes);
+                    break;
                 }
                 case 2: {
                     ArrayList<Libro> libros = new ArrayList<>();
@@ -62,13 +63,16 @@ public class Ejecutador {
                         libros.add(new Libro(titulo, autor, isbn, disponible));
 
                         System.out.println("¿quiere registrar mas libros?");
+                        entrada.nextLine();
                         char respuesta = entrada.next().toLowerCase().charAt(0);
                         if (respuesta != 's') {
                             break;
                         }
                     }
-
+                    administrador.registrarLibro(libros);
+                    break;
                 }
+
                 case 3: {
                     Cliente cliente1=new Cliente(1051634330, "santiago", "mling@gmail.com");
                     Libro libro1=new Libro("asdfghj", "La odisea", "Homero", true);
@@ -77,7 +81,6 @@ public class Ejecutador {
                     boolean estado=true;
                     Prestamo prestamo=new Prestamo(fechaInicio, fechaDevolucion,estado,libro1, cliente1);
                     administrador.realizarPrestamo(prestamo);
-
                 }
 
                 case 4: {
@@ -89,7 +92,6 @@ public class Ejecutador {
                         break;
                     }
                 }
-                break;
             }
         }
     }

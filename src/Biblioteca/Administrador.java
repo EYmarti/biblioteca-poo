@@ -21,17 +21,18 @@ public class Administrador extends Usuario{
         }
     }
     public void registrarLibro(ArrayList<Libro>libros){
-        //System.out.println("Informacion del libro prestado");
-        //System.out.println("Titulo: " + Libro.getTitulo());
-       // System.out.println("isbn: " + Libro.getIsbn());
-       // System.out.println("Autor: " + Libro.getAutor());
-        //System.out.println("disponible: " + Libro.isDisponible());
+        for (Libro l: libros){
+            this.libros.add(l);
+            System.out.println("ISBN: " + l.getIsbn());
+            System.out.println("Título: " + l.getTitulo());
+            System.out.println("Autor: "+l.getAutor());
+            System.out.println("Estado:"+l.isDisponible());
+        }
     }
     public void realizarPrestamo (Prestamo prestamo) {
         System.out.println("fecha del prestamo: " + prestamo.getFechaInicio());
         System.out.println("fecha de devolucion: "  + prestamo.getFechaDevolucion());
         System.out.println("estado del prestamo: "+ prestamo.getEstado());
-        System.out.println("Cliente: " + prestamo.getUsuario());
     }
 
 }
